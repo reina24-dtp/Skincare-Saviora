@@ -5,6 +5,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { AppProvider } from '@/context/AppContext';
 import { Toaster } from '@/components/ui/toaster';
+import { FirebaseClientProvider } from '@/firebase';
 
 export const metadata: Metadata = {
   title: 'Skincare Savior',
@@ -31,14 +32,16 @@ export default function RootLayout({
           'min-h-screen bg-background font-body antialiased'
         )}
       >
-        <AppProvider>
-          <div className="relative flex min-h-dvh flex-col bg-background">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
-          <Toaster />
-        </AppProvider>
+        <FirebaseClientProvider>
+          <AppProvider>
+            <div className="relative flex min-h-dvh flex-col bg-background">
+              <Header />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+            <Toaster />
+          </AppProvider>
+        </FirebaseClientProvider>
       </body>
     </html>
   );
