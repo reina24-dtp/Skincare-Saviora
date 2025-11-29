@@ -11,32 +11,32 @@ import type { SkinType, SkinConcern } from '@/lib/types';
 const quizQuestions = [
   {
     id: 'skinType',
-    question: 'How does your skin feel an hour after washing?',
+    question: 'Bagaimana rasanya kulit Anda satu jam setelah dicuci?',
     options: [
-      { label: 'Tight and flaky', value: 'dry' },
-      { label: 'Shiny and slick', value: 'oily' },
-      { label: 'A bit of both (e.g., oily T-zone)', value: 'combination' },
-      { label: 'Comfortable, but easily irritated', value: 'sensitive' },
+      { label: 'Kencang dan bersisik', value: 'dry' },
+      { label: 'Mengkilap dan licin', value: 'oily' },
+      { label: 'Sedikit keduanya (mis., zona-T berminyak)', value: 'combination' },
+      { label: 'Nyaman, tapi mudah iritasi', value: 'sensitive' },
     ],
   },
   {
     id: 'skinConcern',
-    question: 'What is your primary skin concern?',
+    question: 'Apa masalah utama kulit Anda?',
     options: [
-      { label: 'Pimples and breakouts', value: 'acne' },
-      { label: 'Dull, tired-looking skin', value: 'dullness' },
-      { label: 'Fine lines and wrinkles', value: 'aging' },
-      { label: 'Uneven tone or dark spots', value: 'dark spots' },
-      { label: 'Visible, large pores', value: 'large pores' },
+      { label: 'Jerawat dan bruntusan', value: 'acne' },
+      { label: 'Kulit kusam dan terlihat lelah', value: 'dullness' },
+      { label: 'Garis halus dan kerutan', value: 'aging' },
+      { label: 'Warna kulit tidak merata atau noda hitam', value: 'dark spots' },
+      { label: 'Pori-pori terlihat besar', value: 'large pores' },
     ],
   },
    {
     id: 'sensitivity',
-    question: 'How sensitive is your skin to new products?',
+    question: 'Seberapa sensitif kulit Anda terhadap produk baru?',
     options: [
-      { label: 'Very sensitive, reacts often', value: 'high' },
-      { label: 'Somewhat sensitive', value: 'medium' },
-      { label: 'Not sensitive at all', value: 'low' },
+      { label: 'Sangat sensitif, sering bereaksi', value: 'high' },
+      { label: 'Agak sensitif', value: 'medium' },
+      { label: 'Tidak sensitif sama sekali', value: 'low' },
     ],
   },
 ];
@@ -98,8 +98,8 @@ export function SkinQuiz() {
     return (
       <Card className="shadow-2xl">
         <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-headline">Your Personalized Recommendations</CardTitle>
-          <CardDescription>Based on your answers, here are some products we think you&apos;ll love.</CardDescription>
+          <CardTitle className="text-3xl font-headline">Rekomendasi Pribadi Anda</CardTitle>
+          <CardDescription>Berdasarkan jawaban Anda, berikut adalah beberapa produk yang kami pikir akan Anda sukai.</CardDescription>
         </CardHeader>
         <CardContent>
           {recommendations.length > 0 ? (
@@ -109,11 +109,11 @@ export function SkinQuiz() {
               ))}
             </div>
           ) : (
-             <p className="text-center text-muted-foreground">Sorry, we couldn&apos;t find any specific recommendations. Try exploring all products!</p>
+             <p className="text-center text-muted-foreground">Maaf, kami tidak dapat menemukan rekomendasi spesifik. Coba jelajahi semua produk!</p>
           )}
         </CardContent>
         <CardFooter className="flex justify-center">
-          <Button onClick={restartQuiz}>Take Quiz Again</Button>
+          <Button onClick={restartQuiz}>Ulangi Kuis</Button>
         </CardFooter>
       </Card>
     );
@@ -124,10 +124,10 @@ export function SkinQuiz() {
       <CardHeader>
         <Progress value={progress} className="w-full mb-4" />
         <CardTitle className="text-3xl font-headline text-center">
-          {step < quizQuestions.length ? `Question ${step + 1}` : 'Ready for your results?'}
+          {step < quizQuestions.length ? `Pertanyaan ${step + 1}` : 'Siap untuk hasil Anda?'}
         </CardTitle>
         <CardDescription className="text-center text-lg">
-          {step < quizQuestions.length ? quizQuestions[step].question : "We've analyzed your answers. Let's see your matches!"}
+          {step < quizQuestions.length ? quizQuestions[step].question : "Kami telah menganalisis jawaban Anda. Mari kita lihat kecocokan Anda!"}
         </CardDescription>
       </CardHeader>
       <CardContent className="min-h-[150px] flex items-center">
@@ -146,13 +146,13 @@ export function SkinQuiz() {
           </div>
         ) : (
           <div className="w-full text-center">
-            <Button size="lg" onClick={calculateRecommendations}>View My Products</Button>
+            <Button size="lg" onClick={calculateRecommendations}>Lihat Produk Saya</Button>
           </div>
         )}
       </CardContent>
       {step > 0 && step <= quizQuestions.length && (
          <CardFooter>
-            <Button variant="link" onClick={() => setStep(step - 1)}>Back</Button>
+            <Button variant="link" onClick={() => setStep(step - 1)}>Kembali</Button>
         </CardFooter>
       )}
     </Card>

@@ -8,10 +8,10 @@ import { useAppContext } from '@/context/AppContext';
 import { useState } from 'react';
 
 const navLinks = [
-  { href: '/products', label: 'Products' },
-  { href: '/quiz', label: 'Skin Quiz' },
-  { href: '/ai-advisor', label: 'AI Advisor' },
-  { href: '/vouchers', label: 'Vouchers' },
+  { href: '/products', label: 'Produk' },
+  { href: '/quiz', label: 'Kuis Kulit' },
+  { href: '/ai-advisor', label: 'Penasihat AI' },
+  { href: '/vouchers', label: 'Voucher' },
 ];
 
 export function Header() {
@@ -50,7 +50,7 @@ export function Header() {
               className="md:hidden"
             >
               <Menu className="h-5 w-5" />
-              <span className="sr-only">Toggle Menu</span>
+              <span className="sr-only">Buka Menu</span>
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="pr-0">
@@ -84,7 +84,7 @@ export function Header() {
                             </span>
                         )}
                     </div>
-                    <span className="sr-only">Wishlist</span>
+                    <span className="sr-only">Daftar Keinginan</span>
                 </Link>
             </Button>
             <Button asChild variant="ghost" size="icon">
@@ -97,7 +97,7 @@ export function Header() {
                             </span>
                         )}
                     </div>
-                    <span className="sr-only">Shopping Cart</span>
+                    <span className="sr-only">Keranjang Belanja</span>
                 </Link>
             </Button>
           </div>

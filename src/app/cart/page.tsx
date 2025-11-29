@@ -27,7 +27,7 @@ export default function CartPage() {
   return (
     <div className="container mx-auto px-4 py-12 md:py-20">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-headline font-bold tracking-tight sm:text-5xl">Shopping Cart</h1>
+        <h1 className="text-4xl font-headline font-bold tracking-tight sm:text-5xl">Keranjang Belanja</h1>
       </div>
 
       {cart.length > 0 ? (
@@ -80,12 +80,12 @@ export default function CartPage() {
                 </Card>
               );
             })}
-             <Button variant="outline" onClick={clearCart}>Clear Cart</Button>
+             <Button variant="outline" onClick={clearCart}>Kosongkan Keranjang</Button>
           </div>
           <div className="lg:col-span-1">
             <Card className="sticky top-20 shadow-lg">
               <CardHeader>
-                <CardTitle>Order Summary</CardTitle>
+                <CardTitle>Ringkasan Pesanan</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex justify-between">
@@ -93,7 +93,7 @@ export default function CartPage() {
                   <span>${subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Shipping</span>
+                  <span className="text-muted-foreground">Pengiriman</span>
                   <span>${shipping.toFixed(2)}</span>
                 </div>
                 <Separator />
@@ -103,7 +103,7 @@ export default function CartPage() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button size="lg" className="w-full">Proceed to Checkout</Button>
+                <Button size="lg" className="w-full">Lanjutkan ke Checkout</Button>
               </CardFooter>
             </Card>
           </div>
@@ -111,12 +111,12 @@ export default function CartPage() {
       ) : (
         <div className="text-center py-16 border-2 border-dashed rounded-lg">
           <ShoppingBag className="mx-auto h-12 w-12 text-muted-foreground" />
-          <h3 className="mt-4 text-xl font-semibold">Your cart is empty</h3>
+          <h3 className="mt-4 text-xl font-semibold">Keranjang Anda kosong</h3>
           <p className="mt-2 text-muted-foreground">
-            Looks like you haven't added any products yet.
+            Sepertinya Anda belum menambahkan produk apa pun.
           </p>
           <Button asChild className="mt-6">
-            <Link href="/products">Start Shopping</Link>
+            <Link href="/products">Mulai Belanja</Link>
           </Button>
         </div>
       )}

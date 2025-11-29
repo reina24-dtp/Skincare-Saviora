@@ -58,18 +58,18 @@ export function ProductGrid({ allProducts, filters }: ProductGridProps) {
   return (
     <div>
         <div className="flex justify-between items-center mb-6">
-            <p className="text-sm text-muted-foreground">{filteredProducts.length} products</p>
+            <p className="text-sm text-muted-foreground">{filteredProducts.length} produk</p>
             <div className="flex items-center gap-2">
-                <Label htmlFor="sort-by" className="text-sm">Sort by:</Label>
+                <Label htmlFor="sort-by" className="text-sm">Urutkan:</Label>
                 <Select value={sortOrder} onValueChange={handleSortChange}>
                     <SelectTrigger id="sort-by" className="w-[180px]">
-                        <SelectValue placeholder="Sort by" />
+                        <SelectValue placeholder="Urutkan" />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="featured">Featured</SelectItem>
-                        <SelectItem value="price-asc">Price: Low to High</SelectItem>
-                        <SelectItem value="price-desc">Price: High to Low</SelectItem>
-                        <SelectItem value="name-asc">Alphabetical</SelectItem>
+                        <SelectItem value="featured">Unggulan</SelectItem>
+                        <SelectItem value="price-asc">Harga: Rendah ke Tinggi</SelectItem>
+                        <SelectItem value="price-desc">Harga: Tinggi ke Rendah</SelectItem>
+                        <SelectItem value="name-asc">Alfabetis</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
@@ -83,8 +83,8 @@ export function ProductGrid({ allProducts, filters }: ProductGridProps) {
             </div>
         ) : (
             <div className="text-center py-20">
-                <h3 className="text-2xl font-semibold">No products found</h3>
-                <p className="text-muted-foreground mt-2">Try adjusting your filters.</p>
+                <h3 className="text-2xl font-semibold">Tidak ada produk yang ditemukan</h3>
+                <p className="text-muted-foreground mt-2">Coba sesuaikan filter Anda.</p>
             </div>
         )}
     </div>

@@ -31,10 +31,10 @@ export default function ProductsPage() {
     <div className="container mx-auto px-4 py-10 md:py-16">
       <div className="text-center mb-12">
         <h1 className="text-4xl font-headline font-bold tracking-tight sm:text-5xl">
-          Discover Your Perfect Skincare
+          Temukan Perawatan Kulit Sempurna Anda
         </h1>
         <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-          Filter by your needs to find products that truly work for you.
+          Filter berdasarkan kebutuhan Anda untuk menemukan produk yang benar-benar cocok untuk Anda.
         </p>
       </div>
 

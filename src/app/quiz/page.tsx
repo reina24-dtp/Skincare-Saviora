@@ -3,8 +3,8 @@ import { placeholderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
 
 export const metadata = {
-    title: 'Skin Quiz | Skincare Savior',
-    description: 'Take our quick quiz to get personalized skincare recommendations.',
+    title: 'Kuis Kulit | Skincare Savior',
+    description: 'Ikuti kuis singkat kami untuk mendapatkan rekomendasi perawatan kulit yang dipersonalisasi.',
 };
 
 export default function QuizPage() {

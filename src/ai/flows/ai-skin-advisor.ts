@@ -14,7 +14,7 @@ import {z} from 'genkit';
 const AISkinAdvisorInputSchema = z.object({
   userInput: z
     .string()
-    .describe('The user input describing their skincare needs and preferences.'),
+    .describe('Masukan pengguna yang menjelaskan kebutuhan dan preferensi perawatan kulit mereka.'),
 });
 export type AISkinAdvisorInput = z.infer<typeof AISkinAdvisorInputSchema>;
 
@@ -22,7 +22,7 @@ const AISkinAdvisorOutputSchema = z.object({
   productRecommendations: z
     .string()
     .describe(
-      'A list of skincare product recommendations suitable for oily skin, based on the user input.'
+      'Daftar rekomendasi produk perawatan kulit yang cocok untuk kulit berminyak, berdasarkan masukan pengguna.'
     ),
 });
 export type AISkinAdvisorOutput = z.infer<typeof AISkinAdvisorOutputSchema>;
@@ -35,9 +35,9 @@ const prompt = ai.definePrompt({
   name: 'aiSkinAdvisorPrompt',
   input: {schema: AISkinAdvisorInputSchema},
   output: {schema: AISkinAdvisorOutputSchema},
-  prompt: `You are a skincare advisor specializing in oily skin. Based on the user's input, recommend 3-5 skincare products that would be suitable for their skin type and concerns. Explain why each product is recommended.
+  prompt: `Anda adalah seorang penasihat perawatan kulit yang berspesialisasi pada kulit berminyak. Berdasarkan masukan pengguna, rekomendasikan 3-5 produk perawatan kulit yang sesuai dengan jenis dan masalah kulit mereka. Jelaskan mengapa setiap produk direkomendasikan. Jawab dalam Bahasa Indonesia.
 
-User Input: {{{userInput}}}`,
+Masukan Pengguna: {{{userInput}}}`,
 });
 
 const aiSkinAdvisorFlow = ai.defineFlow(

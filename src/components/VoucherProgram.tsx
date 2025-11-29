@@ -16,6 +16,12 @@ const mockVouchers = [
   { id: 'VCH004', amount: 5, status: 'rejected', expiry: 'N/A' },
 ];
 
+const statusMap = {
+  approved: 'Disetujui',
+  pending: 'Menunggu',
+  rejected: 'Ditolak'
+}
+
 export function VoucherProgram() {
   const [file, setFile] = useState<File | null>(null);
   const { toast } = useToast();
@@ -30,15 +36,15 @@ export function VoucherProgram() {
     e.preventDefault();
     if (!file) {
       toast({
-        title: 'No file selected',
-        description: 'Please select a photo to upload.',
+        title: 'Tidak ada file yang dipilih',
+        description: 'Silakan pilih foto untuk diunggah.',
         variant: 'destructive',
       });
       return;
     }
     toast({
-      title: 'Upload Successful!',
-      description: 'Your photo has been submitted for verification.',
+      title: 'Unggah Berhasil!',
+      description: 'Foto Anda telah dikirim untuk verifikasi.',
     });
     // Reset file input
     setFile(null);
@@ -51,9 +57,9 @@ export function VoucherProgram() {
     <div className="space-y-12">
       <Card>
         <CardHeader>
-          <CardTitle>Upload Your Empty Container</CardTitle>
+          <CardTitle>Unggah Wadah Kosong Anda</CardTitle>
           <CardDescription>
-            Submit a clear photo of the empty product packaging. Each approved submission earns you a $5 voucher.
+            Kirimkan foto yang jelas dari kemasan produk yang kosong. Setiap kiriman yang disetujui memberi Anda voucher $5.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -61,7 +67,7 @@ export function VoucherProgram() {
             <Input type="file" accept="image/*" onChange={handleFileChange} />
             <Button type="submit" disabled={!file}>
               <UploadCloud className="mr-2 h-4 w-4" />
-              Submit for Verification
+              Kirim untuk Verifikasi
             </Button>
           </form>
         </CardContent>
@@ -69,19 +75,19 @@ export function VoucherProgram() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Your Voucher History</CardTitle>
+          <CardTitle>Riwayat Voucher Anda</CardTitle>
           <CardDescription>
-            Here is the status of your voucher submissions.
+            Berikut adalah status pengajuan voucher Anda.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Voucher ID</TableHead>
-                <TableHead>Amount</TableHead>
+                <TableHead>ID Voucher</TableHead>
+                <TableHead>Jumlah</TableHead>
                 <TableHead>Status</TableHead>
-                <TableHead>Expiry Date</TableHead>
+                <TableHead>Tanggal Kedaluwarsa</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -100,7 +106,7 @@ export function VoucherProgram() {
                       }
                       className="capitalize bg-opacity-80"
                     >
-                      {voucher.status}
+                      {statusMap[voucher.status as keyof typeof statusMap]}
                     </Badge>
                   </TableCell>
                   <TableCell>{voucher.expiry}</TableCell>

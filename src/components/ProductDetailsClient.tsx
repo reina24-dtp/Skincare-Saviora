@@ -25,7 +25,7 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
-        <label htmlFor="quantity" className="font-medium">Quantity</label>
+        <label htmlFor="quantity" className="font-medium">Jumlah</label>
         <div className="flex items-center border rounded-md">
           <Button variant="ghost" size="icon" onClick={() => handleQuantityChange(-1)} className="h-10 w-10">
             <Minus className="h-4 w-4" />
@@ -47,11 +47,11 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
       <div className="flex flex-col sm:flex-row gap-4">
         <Button size="lg" className="flex-1" onClick={() => addToCart(product, quantity)}>
           <ShoppingBag className="mr-2 h-5 w-5" />
-          Add to Cart
+          Tambah ke Keranjang
         </Button>
         <Button size="lg" variant="outline" className="w-full sm:w-auto" onClick={() => toggleWishlist(product)}>
            <Heart className={cn("mr-2 h-5 w-5", inWishlist && "fill-primary text-primary")} />
-          {inWishlist ? 'In Wishlist' : 'Add to Wishlist'}
+          {inWishlist ? 'Di Daftar Keinginan' : 'Tambah ke Daftar Keinginan'}
         </Button>
       </div>
     </div>

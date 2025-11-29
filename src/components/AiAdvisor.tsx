@@ -19,16 +19,16 @@ export function AiAdvisor() {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>Describe Your Skin</CardTitle>
+        <CardTitle>Jelaskan Kulit Anda</CardTitle>
         <CardDescription>
-          For example: "I have very oily skin with frequent breakouts on my chin. My pores look huge."
+          Contoh: "Saya punya kulit sangat berminyak dengan jerawat sering muncul di dagu. Pori-pori saya terlihat besar."
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form action={formAction} className="space-y-4">
           <Textarea
             name="userInput"
-            placeholder="Tell us about your oily skin concerns..."
+            placeholder="Ceritakan tentang masalah kulit berminyak Anda..."
             rows={4}
             required
             className="text-base"
@@ -41,7 +41,7 @@ export function AiAdvisor() {
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                         <Wand2 className="h-6 w-6 text-primary"/>
-                        Your AI-Powered Recommendations
+                        Rekomendasi Berbasis AI Anda
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -54,7 +54,7 @@ export function AiAdvisor() {
 
         {state.error && (
             <div className="mt-6 text-destructive text-center">
-                <p>Sorry, something went wrong. Please try again.</p>
+                <p>Maaf, terjadi kesalahan. Silakan coba lagi.</p>
             </div>
         )}
       </CardContent>
@@ -72,7 +72,7 @@ function SubmitButton() {
           ) : (
             <Wand2 className="mr-2 h-4 w-4" />
           )}
-          Get Advice
+          Dapatkan Saran
         </Button>
     )
 }

@@ -72,7 +72,7 @@ const getInitialState = (): AppState => {
     const storedState = localStorage.getItem('skincareSaviorState');
     return storedState ? JSON.parse(storedState) : { cart: [], wishlist: [] };
   } catch (error) {
-    console.error('Failed to parse state from localStorage', error);
+    console.error('Gagal mem-parse status dari localStorage', error);
     return { cart: [], wishlist: [] };
   }
 };
@@ -89,14 +89,14 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     try {
       localStorage.setItem('skincareSaviorState', JSON.stringify(state));
     } catch (error) {
-      console.error('Failed to save state to localStorage', error);
+      console.error('Gagal menyimpan status ke localStorage', error);
     }
   }, [state]);
 
   const addToCart = (product: Product, quantity: number) => {
     dispatch({ type: 'ADD_TO_CART', payload: { product, quantity } });
     toast({
-      title: "Added to cart",
+      title: "Ditambahkan ke keranjang",
       description: `${quantity} x ${product.name}`,
     });
   };
@@ -117,7 +117,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     const isInWishlist = state.wishlist.some(item => item.id === product.id);
     dispatch({ type: 'TOGGLE_WISHLIST', payload: { product } });
     toast({
-      title: isInWishlist ? "Removed from wishlist" : "Added to wishlist",
+      title: isInWishlist ? "Dihapus dari daftar keinginan" : "Ditambahkan ke daftar keinginan",
       description: product.name,
     });
   };
@@ -146,7 +146,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 export const useAppContext = (): AppContextType => {
   const context = useContext(AppContext);
   if (context === undefined) {
-    throw new Error('useAppContext must be used within an AppProvider');
+    throw new Error('useAppContext harus digunakan di dalam AppProvider');
   }
   return context;
 };

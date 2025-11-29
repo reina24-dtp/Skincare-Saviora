@@ -13,9 +13,9 @@ export default function WishlistPage() {
   return (
     <div className="container mx-auto px-4 py-12 md:py-20">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-headline font-bold tracking-tight sm:text-5xl">Your Wishlist</h1>
+        <h1 className="text-4xl font-headline font-bold tracking-tight sm:text-5xl">Daftar Keinginan Anda</h1>
         <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-          Products you love, all in one place.
+          Produk yang Anda sukai, semuanya di satu tempat.
         </p>
       </div>
 
@@ -28,12 +28,12 @@ export default function WishlistPage() {
       ) : (
         <div className="text-center py-16 border-2 border-dashed rounded-lg">
           <Heart className="mx-auto h-12 w-12 text-muted-foreground" />
-          <h3 className="mt-4 text-xl font-semibold">Your wishlist is empty</h3>
+          <h3 className="mt-4 text-xl font-semibold">Daftar keinginan Anda kosong</h3>
           <p className="mt-2 text-muted-foreground">
-            Start browsing to find products you&apos;ll love.
+            Mulai jelajahi untuk menemukan produk yang akan Anda sukai.
           </p>
           <Button asChild className="mt-6">
-            <Link href="/products">Explore Products</Link>
+            <Link href="/products">Jelajahi Produk</Link>
           </Button>
         </div>
       )}

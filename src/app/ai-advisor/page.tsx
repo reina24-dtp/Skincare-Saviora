@@ -2,8 +2,8 @@ import { Sparkles } from 'lucide-react';
 import { AiAdvisor } from '@/components/AiAdvisor';
 
 export const metadata = {
-  title: 'AI Skin Advisor | Skincare Savior',
-  description: 'Get instant, AI-powered skincare recommendations for oily skin.',
+  title: 'Penasihat Kulit AI | Skincare Savior',
+  description: 'Dapatkan rekomendasi perawatan kulit instan bertenaga AI untuk kulit berminyak.',
 };
 
 export default function AiAdvisorPage() {
@@ -14,11 +14,11 @@ export default function AiAdvisorPage() {
             <Sparkles className="h-8 w-8 text-primary" />
         </div>
         <h1 className="text-4xl font-headline font-bold tracking-tight sm:text-5xl">
-          AI Skin Advisor
+          Penasihat Kulit AI
         </h1>
         <p className="text-lg text-muted-foreground md:text-xl">
-          Describe your skin concerns, and our AI will suggest the best products for you. 
-          Currently optimized for <span className="font-semibold text-primary">oily skin</span>.
+          Jelaskan masalah kulit Anda, dan AI kami akan menyarankan produk terbaik untuk Anda.
+          Saat ini dioptimalkan untuk <span className="font-semibold text-primary">kulit berminyak</span>.
         </p>
       </div>
 

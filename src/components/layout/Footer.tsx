@@ -13,7 +13,7 @@ export function Footer() {
             <span className="font-bold font-headline text-lg">Skincare Savior</span>
           </div>
           <p className="text-sm text-muted-foreground">
-            &copy; {currentYear} Skincare Savior. All rights reserved.
+            &copy; {currentYear} Skincare Savior. Hak cipta dilindungi.
           </p>
           <div className="flex space-x-4">
             <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">

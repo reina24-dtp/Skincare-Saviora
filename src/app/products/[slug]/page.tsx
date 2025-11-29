@@ -17,7 +17,7 @@ type ProductPageProps = {
 export async function generateMetadata({ params }: ProductPageProps) {
   const product = products.find(p => p.slug === params.slug);
   if (!product) {
-    return { title: 'Product Not Found' };
+    return { title: 'Produk Tidak Ditemukan' };
   }
   return {
     title: `${product.name} | Skincare Savior`,
@@ -37,9 +37,9 @@ export default function ProductPage({ params }: ProductPageProps) {
   return (
     <div className="container mx-auto px-4 py-12 md:py-20">
        <div className="text-sm mb-6 flex items-center space-x-2 text-muted-foreground">
-        <Link href="/" className="hover:text-primary">Home</Link>
+        <Link href="/" className="hover:text-primary">Beranda</Link>
         <ChevronRight className="h-4 w-4" />
-        <Link href="/products" className="hover:text-primary">Products</Link>
+        <Link href="/products" className="hover:text-primary">Produk</Link>
         <ChevronRight className="h-4 w-4" />
         <span className="text-foreground">{product.name}</span>
       </div>
@@ -71,19 +71,19 @@ export default function ProductPage({ params }: ProductPageProps) {
           <div className="mt-10">
             <Accordion type="single" collapsible defaultValue='how-to-use' className="w-full">
               <AccordionItem value="how-to-use">
-                <AccordionTrigger className="text-lg font-headline">How to Use</AccordionTrigger>
+                <AccordionTrigger className="text-lg font-headline">Cara Penggunaan</AccordionTrigger>
                 <AccordionContent className="text-base text-muted-foreground">
                   {product.howToUse}
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="ingredients">
-                <AccordionTrigger className="text-lg font-headline">Ingredients</AccordionTrigger>
+                <AccordionTrigger className="text-lg font-headline">Bahan-bahan</AccordionTrigger>
                 <AccordionContent className="text-base text-muted-foreground">
                   {product.ingredients.join(', ')}
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="skin-concerns">
-                <AccordionTrigger className="text-lg font-headline">Good For</AccordionTrigger>
+                <AccordionTrigger className="text-lg font-headline">Cocok Untuk</AccordionTrigger>
                 <AccordionContent>
                     <div className="flex flex-wrap gap-2">
                         {[...product.skinTypes, ...product.skinConcerns].map(tag => (

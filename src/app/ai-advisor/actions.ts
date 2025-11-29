@@ -16,7 +16,7 @@ export async function getSkincareAdvice(
   if (!userInput) {
     return {
       recommendations: null,
-      error: 'Please describe your skin concerns.',
+      error: 'Harap jelaskan masalah kulit Anda.',
     };
   }
 
@@ -30,13 +30,13 @@ export async function getSkincareAdvice(
     }
     return {
         recommendations: null,
-        error: 'Could not generate recommendations.'
+        error: 'Tidak dapat menghasilkan rekomendasi.'
     }
   } catch (error) {
-    console.error('AI Skin Advisor error:', error);
+    console.error('Kesalahan Penasihat Kulit AI:', error);
     return {
       recommendations: null,
-      error: 'An unexpected error occurred. Please try again later.',
+      error: 'Terjadi kesalahan tak terduga. Silakan coba lagi nanti.',
     };
   }
 }

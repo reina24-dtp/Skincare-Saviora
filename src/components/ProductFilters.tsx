@@ -38,12 +38,12 @@ export function ProductFilters({ skinTypes, skinConcerns, categories, brands, fi
 
   return (
     <Card className="sticky top-20 p-4 shadow-sm">
-      <h2 className="text-xl font-headline font-semibold mb-4 flex items-center gap-2"><ListFilter className="w-5 h-5"/> Filters</h2>
+      <h2 className="text-xl font-headline font-semibold mb-4 flex items-center gap-2"><ListFilter className="w-5 h-5"/> Filter</h2>
       
       <div className="relative mb-4">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground"/>
         <Input 
-            placeholder="Search products..." 
+            placeholder="Cari produk..." 
             className="pl-9"
             value={filters.search}
             onChange={handleSearchChange}
@@ -52,7 +52,7 @@ export function ProductFilters({ skinTypes, skinConcerns, categories, brands, fi
 
       <Accordion type="multiple" defaultValue={['category']} className="w-full">
         <AccordionItem value="category">
-          <AccordionTrigger className="font-semibold">Category</AccordionTrigger>
+          <AccordionTrigger className="font-semibold">Kategori</AccordionTrigger>
           <AccordionContent>
             <div className="grid gap-2">
               {categories.map(c => (
@@ -65,7 +65,7 @@ export function ProductFilters({ skinTypes, skinConcerns, categories, brands, fi
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="skin-type">
-          <AccordionTrigger className="font-semibold">Skin Type</AccordionTrigger>
+          <AccordionTrigger className="font-semibold">Jenis Kulit</AccordionTrigger>
           <AccordionContent>
             <div className="grid gap-2">
               {skinTypes.map(st => (
@@ -78,7 +78,7 @@ export function ProductFilters({ skinTypes, skinConcerns, categories, brands, fi
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="skin-concern">
-          <AccordionTrigger className="font-semibold">Skin Concern</AccordionTrigger>
+          <AccordionTrigger className="font-semibold">Masalah Kulit</AccordionTrigger>
           <AccordionContent>
             <div className="grid gap-2">
               {skinConcerns.map(sc => (
@@ -91,7 +91,7 @@ export function ProductFilters({ skinTypes, skinConcerns, categories, brands, fi
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="brand">
-          <AccordionTrigger className="font-semibold">Brand</AccordionTrigger>
+          <AccordionTrigger className="font-semibold">Merek</AccordionTrigger>
           <AccordionContent>
             <div className="grid gap-2">
               {brands.map(b => (
