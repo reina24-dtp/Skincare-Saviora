@@ -1,11 +1,12 @@
 "use client";
 
-import { useFormState } from 'react-dom';
+import React, { useActionState } from 'react';
 import { Loader2, Wand2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { getSkincareAdvice } from '@/app/ai-advisor/actions';
+import { useFormStatus } from 'react-dom';
 
 const initialState = {
   recommendations: '',
@@ -13,7 +14,7 @@ const initialState = {
 };
 
 export function AiAdvisor() {
-  const [state, formAction] = useFormState(getSkincareAdvice, initialState);
+  const [state, formAction] = useActionState(getSkincareAdvice, initialState);
 
   return (
     <Card className="w-full">
@@ -62,13 +63,11 @@ export function AiAdvisor() {
 }
 
 function SubmitButton() {
-    // This is a simplified way to show a pending state without full useFormStatus
-    // For a production app, useFormStatus would be better.
-    const [isPending, setIsPending] = React.useState(false);
+    const { pending } = useFormStatus();
     
     return (
-        <Button type="submit" className="w-full" disabled={isPending} onClick={() => setIsPending(true)}>
-          {isPending ? (
+        <Button type="submit" className="w-full" disabled={pending}>
+          {pending ? (
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
           ) : (
             <Wand2 className="mr-2 h-4 w-4" />
