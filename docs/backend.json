@@ -1,0 +1,439 @@
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user of the Skincare Savior application.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the user.",
+          "format": "uuid"
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the user.",
+          "format": "email"
+        },
+        "firstName": {
+          "type": "string",
+          "description": "First name of the user."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Last name of the user."
+        },
+        "skinTypeId": {
+          "type": "string",
+          "description": "Reference to SkinType. (Relationship: User 1:1 SkinType)"
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "firstName",
+        "lastName",
+        "skinTypeId"
+      ]
+    },
+    "Product": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Product",
+      "type": "object",
+      "description": "Represents a skincare product available in the e-commerce store.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the product."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the product."
+        },
+        "description": {
+          "type": "string",
+          "description": "Short description of the product."
+        },
+        "ingredients": {
+          "type": "string",
+          "description": "List of ingredients in the product."
+        },
+        "suitableSkinTypes": {
+          "type": "string",
+          "description": "Suitable skin types for the product."
+        },
+        "categoryId": {
+          "type": "string",
+          "description": "Reference to Category. (Relationship: Product 1:1 Category)"
+        },
+        "price": {
+          "type": "number",
+          "description": "Price of product."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description",
+        "ingredients",
+        "suitableSkinTypes",
+        "categoryId",
+        "price"
+      ]
+    },
+    "SkinType": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "SkinType",
+      "type": "object",
+      "description": "Represents a skin type (e.g., oily, dry, sensitive).",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the skin type."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the skin type."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the skin type."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description"
+      ]
+    },
+    "Voucher": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Voucher",
+      "type": "object",
+      "description": "Represents a discount voucher for users.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the voucher."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to User. (Relationship: User 1:N Voucher)"
+        },
+        "code": {
+          "type": "string",
+          "description": "Voucher code."
+        },
+        "discountAmount": {
+          "type": "number",
+          "description": "Discount amount associated with the voucher."
+        },
+        "expiryDate": {
+          "type": "string",
+          "description": "Expiration date of the voucher.",
+          "format": "date-time"
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the voucher (e.g., pending, approved)."
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "code",
+        "discountAmount",
+        "expiryDate",
+        "status"
+      ]
+    },
+    "Cart": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Cart",
+      "type": "object",
+      "description": "Represents a shopping cart for a user.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the cart."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to User. (Relationship: User 1:1 Cart)"
+        }
+      },
+      "required": [
+        "id",
+        "userId"
+      ]
+    },
+    "CartItem": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "CartItem",
+      "type": "object",
+      "description": "Represents an item in a shopping cart.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the cart item."
+        },
+        "cartId": {
+          "type": "string",
+          "description": "Reference to Cart. (Relationship: Cart 1:N CartItem)"
+        },
+        "productId": {
+          "type": "string",
+          "description": "Reference to Product. (Relationship: Product 1:N CartItem)"
+        },
+        "quantity": {
+          "type": "number",
+          "description": "Quantity of the product in the cart."
+        }
+      },
+      "required": [
+        "id",
+        "cartId",
+        "productId",
+        "quantity"
+      ]
+    },
+    "Wishlist": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Wishlist",
+      "type": "object",
+      "description": "Represents a user's wishlist.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the wishlist."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to User. (Relationship: User 1:1 Wishlist)"
+        }
+      },
+      "required": [
+        "id",
+        "userId"
+      ]
+    },
+    "WishlistItem": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "WishlistItem",
+      "type": "object",
+      "description": "Represents an item in a user's wishlist.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the wishlist item."
+        },
+        "wishlistId": {
+          "type": "string",
+          "description": "Reference to Wishlist. (Relationship: Wishlist 1:N WishlistItem)"
+        },
+        "productId": {
+          "type": "string",
+          "description": "Reference to Product. (Relationship: Product 1:N WishlistItem)"
+        }
+      },
+      "required": [
+        "id",
+        "wishlistId",
+        "productId"
+      ]
+    },
+    "Category": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Category",
+      "type": "object",
+      "description": "Represents a product category (e.g., cleanser, toner, serum).",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the category."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the category."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the category."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Stores user profiles.  The 'userId' parameter corresponds to the user's UID from Firebase Authentication.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user, corresponding to their Firebase Auth UID."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/products/{productId}",
+        "definition": {
+          "entityName": "Product",
+          "schema": {
+            "$ref": "#/backend/entities/Product"
+          },
+          "description": "Stores product information for all skincare products.",
+          "params": [
+            {
+              "name": "productId",
+              "description": "The unique identifier for the product."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/skinTypes/{skinTypeId}",
+        "definition": {
+          "entityName": "SkinType",
+          "schema": {
+            "$ref": "#/backend/entities/SkinType"
+          },
+          "description": "Stores different skin types.",
+          "params": [
+            {
+              "name": "skinTypeId",
+              "description": "The unique identifier for the skin type."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/vouchers/{voucherId}",
+        "definition": {
+          "entityName": "Voucher",
+          "schema": {
+            "$ref": "#/backend/entities/Voucher"
+          },
+          "description": "Stores discount vouchers for users. Includes denormalized 'userId' for authorization independence.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            },
+            {
+              "name": "voucherId",
+              "description": "The unique identifier for the voucher."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/cart",
+        "definition": {
+          "entityName": "Cart",
+          "schema": {
+            "$ref": "#/backend/entities/Cart"
+          },
+          "description": "Stores shopping cart for a user.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/cart/cartItems/{cartItemId}",
+        "definition": {
+          "entityName": "CartItem",
+          "schema": {
+            "$ref": "#/backend/entities/CartItem"
+          },
+          "description": "Stores the cart items inside a user's cart.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            },
+            {
+              "name": "cartItemId",
+              "description": "The unique identifier for the cart item."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/wishlist",
+        "definition": {
+          "entityName": "Wishlist",
+          "schema": {
+            "$ref": "#/backend/entities/Wishlist"
+          },
+          "description": "Stores the wishlist for a user",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/wishlist/wishlistItems/{wishlistItemId}",
+        "definition": {
+          "entityName": "WishlistItem",
+          "schema": {
+            "$ref": "#/backend/entities/WishlistItem"
+          },
+          "description": "Stores the wishlist items inside a user's wishlist",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            },
+            {
+              "name": "wishlistItemId",
+              "description": "The unique identifier for the wishlist item."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/categories/{categoryId}",
+        "definition": {
+          "entityName": "Category",
+          "schema": {
+            "$ref": "#/backend/entities/Category"
+          },
+          "description": "Stores product categories (e.g., cleanser, toner, serum).",
+          "params": [
+            {
+              "name": "categoryId",
+              "description": "The unique identifier for the category."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore data structure is designed to support the Skincare Savior e-commerce platform, focusing on product discovery, personalization, and voucher programs. The structure prioritizes authorization independence, clarity, and scalability. User-owned data is stored under `/users/{userId}`. Products and Categories are stored in top-level collections. Vouchers are also stored as a subcollection of `/users/{userId}`. Data like Products and Categories which do not belong to a user are stored in top level collections. This design enables robust security rules and efficient queries, aligning with the core design principles.\n\n**Authorization Independence:** Authorization independence is achieved by avoiding hierarchical `get()` calls in security rules. The `userId` is included in the `Voucher` documents, allowing security rules to validate the user's ownership directly without needing to access parent documents.\n\n**QAPs (Rules are not Filters):**\n*   **Secure List Operations:** The segregation of user-specific data (like vouchers) under `/users/{userId}` ensures that listing operations can be securely scoped to a specific user. Top-level collections for Products and Categories allow for listing all non-user specific items without needing user-based filtering."
+  }
+}

@@ -1,0 +1,221 @@
+/**
+ * This ruleset enforces a security model for the Skincare Savior e-commerce application.
+ *
+ * Core Philosophy:
+ * The security model is primarily based on user ownership. All data that is personal
+ * to a user (profile, vouchers, cart, wishlist) is strictly confined to that user's
+ * data tree, accessible only by them. Publicly browsable data, such as products,
+ * categories, and skin types, is stored in top-level collections and is read-only
+ * for all users to ensure catalog integrity.
+ *
+ * Data Structure:
+ * - /users/{userId}/...: All user-specific data is nested under this path. This
+ *   structural segregation is key to the security model, allowing for simple and
+ *   performant ownership checks.
+ * - /products/{productId}: A top-level collection for the public product catalog.
+ * - /categories/{categoryId}: A top-level collection for product categories.
+ * - /skinTypes/{skinTypeId}: A top-level collection for skin type information.
+ *
+ * Key Security Decisions:
+ * - User Isolation: Users can only read and write their own data. They cannot
+ *   access, or even know about, the data of other users. There is no functionality
+ *   for listing all users in the system.
+ * - Public Catalog Integrity: Product and category information is public to all
+ *   visitors but is not writable by any client. This prevents tampering with the
+ *   e-commerce catalog. Data management for these collections should be handled by a
+ *   trusted backend service or administrative tool.
+ * - Denormalization for Authorization: User-specific documents, like Vouchers,
+ *   contain a denormalized `userId` field. This allows security rules to validate
+ *   ownership directly from the document itself without performing costly and slow
+ *   `get()` calls to parent documents. This makes the rules faster and more secure.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions to abstract and simplify rule logic.
+
+    /**
+     * Checks if a user is authenticated.
+     */
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    /**
+     * Checks if the currently authenticated user's UID matches the provided userId.
+     * This is the fundamental check for data ownership.
+     */
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    /**
+     * Ensures an operation is performed by the owner on an existing document.
+     * Crucial for preventing modification or deletion of non-existent data.
+     */
+    function isExistingOwner(userId) {
+      return isOwner(userId) && resource != null;
+    }
+
+    /**
+     * Validates that the `userId` field in a newly created document matches the
+     * creator's authenticated UID, ensuring relational integrity.
+     */
+    function isCreatingCorrectOwner(userId) {
+      return request.resource.data.userId == userId;
+    }
+
+    /**
+     * Enforces immutability of the `userId` field on updates, preventing
+     * documents from being reassigned to different owners.
+     */
+    function isUserIdImmutable() {
+      return request.resource.data.userId == resource.data.userId;
+    }
+
+    /**
+     * @description   User profile data. Only the user themselves can manage their profile.
+     * @path          /users/{userId}
+     * @allow         (create) A new user creating their own profile document: auth.uid == userId.
+     * @allow         (get) An authenticated user reading their own profile.
+     * @deny          (get) An authenticated user trying to read another user's profile.
+     * @principle     Restricts access to a user's own data tree. Enforces self-creation.
+     */
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if false; // Disallow listing all users for privacy and security.
+      allow create: if isOwner(userId) && request.resource.data.id == userId;
+      allow update: if isExistingOwner(userId) && request.resource.data.id == resource.data.id;
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description   Public catalog of skincare products. Readable by anyone, not writable by clients.
+     * @path          /products/{productId}
+     * @allow         (get, list) Any user, signed in or not, can browse products.
+     * @deny          (create, update, delete) Any client attempting to modify the product catalog.
+     * @principle     Public Read with Admin-Only Writes. Writes are disabled at the client
+     *                level and must be performed by a trusted backend.
+     */
+    match /products/{productId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    /**
+     * @description   Public information about skin types. Readable by anyone, not writable by clients.
+     * @path          /skinTypes/{skinTypeId}
+     * @allow         (get, list) Any user, signed in or not, can read skin type information.
+     * @deny          (create, update, delete) Any client attempting to modify skin types.
+     * @principle     Public Read with Admin-Only Writes. Writes are disabled at the client
+     *                level and must be performed by a trusted backend.
+     */
+    match /skinTypes/{skinTypeId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    /**
+     * @description   Public information about product categories. Readable by anyone, not writable by clients.
+     * @path          /categories/{categoryId}
+     * @allow         (get, list) Any user, signed in or not, can read category information.
+     * @deny          (create, update, delete) Any client attempting to modify categories.
+     * @principle     Public Read with Admin-Only Writes. Writes are disabled at the client
+     *                level and must be performed by a trusted backend.
+     */
+    match /categories/{categoryId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    /**
+     * @description   Vouchers belonging to a specific user.
+     * @path          /users/{userId}/vouchers/{voucherId}
+     * @allow         (create) An authenticated user creating a voucher for themselves: auth.uid == userId.
+     * @allow         (get) An authenticated user reading their own voucher.
+     * @deny          (list) User 'A' attempting to list vouchers for user 'B'.
+     * @principle     Enforces document ownership within a user's private data tree.
+     */
+    match /users/{userId}/vouchers/{voucherId} {
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId) && isCreatingCorrectOwner(userId);
+      allow update: if isExistingOwner(userId) && isUserIdImmutable();
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description   The shopping cart document for a user.
+     * @path          /users/{userId}/cart/{cartId}
+     * @allow         (create) An authenticated user creating their own cart document.
+     * @allow         (get) An authenticated user reading their own cart.
+     * @deny          (get) User 'A' trying to read the cart of user 'B'.
+     * @principle     Enforces document ownership for a user's personal cart.
+     */
+    match /users/{userId}/cart/{cartId} {
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId) && isCreatingCorrectOwner(userId);
+      allow update: if isExistingOwner(userId) && isUserIdImmutable();
+      allow delete: if isExistingOwner(userId);
+
+      /**
+       * @description   Items within a user's shopping cart.
+       * @path          /users/{userId}/cart/{cartId}/cartItems/{cartItemId}
+       * @allow         (create) An authenticated user adding an item to their own cart.
+       * @allow         (get) An authenticated user reading an item in their own cart.
+       * @deny          (update) User 'A' attempting to change the quantity of an item in user 'B's cart.
+       * @principle     Inherits ownership from the parent path, securing all items in the cart.
+       */
+      match /cartItems/{cartItemId} {
+        allow get: if isOwner(userId);
+        allow list: if isOwner(userId);
+        allow create: if isOwner(userId) && request.resource.data.cartId == cartId;
+        allow update: if isExistingOwner(userId) && request.resource.data.cartId == resource.data.cartId;
+        allow delete: if isExistingOwner(userId);
+      }
+    }
+
+    /**
+     * @description   The wishlist document for a user.
+     * @path          /users/{userId}/wishlist/{wishlistId}
+     * @allow         (create) An authenticated user creating their own wishlist document.
+     * @allow         (get) An authenticated user reading their own wishlist.
+     * @deny          (get) User 'A' trying to read the wishlist of user 'B'.
+     * @principle     Enforces document ownership for a user's personal wishlist.
+     */
+    match /users/{userId}/wishlist/{wishlistId} {
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId) && isCreatingCorrectOwner(userId);
+      allow update: if isExistingOwner(userId) && isUserIdImmutable();
+      allow delete: if isExistingOwner(userId);
+
+      /**
+       * @description   Items within a user's wishlist.
+       * @path          /users/{userId}/wishlist/{wishlistId}/wishlistItems/{wishlistItemId}
+       * @allow         (create) An authenticated user adding an item to their own wishlist.
+       * @allow         (get) An authenticated user reading an item in their own wishlist.
+       * @deny          (delete) User 'A' attempting to remove an item from user 'B's wishlist.
+       * @principle     Inherits ownership from the parent path, securing all items in the wishlist.
+       */
+      match /wishlistItems/{wishlistItemId} {
+        allow get: if isOwner(userId);
+        allow list: if isOwner(userId);
+        allow create: if isOwner(userId) && request.resource.data.wishlistId == wishlistId;
+        allow update: if isExistingOwner(userId) && request.resource.data.wishlistId == resource.data.wishlistId;
+        allow delete: if isExistingOwner(userId);
+      }
+    }
+  }
+}
