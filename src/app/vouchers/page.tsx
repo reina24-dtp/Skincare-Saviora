@@ -17,9 +17,8 @@ export default function VouchersPage() {
             <Image 
                 src={bannerImage.imageUrl}
                 alt={bannerImage.description}
-                layout="fill"
-                objectFit="cover"
-                className="opacity-10"
+                fill
+                className="object-cover opacity-10"
                 data-ai-hint={bannerImage.imageHint}
             />
          )}

@@ -15,9 +15,8 @@ export default function QuizPage() {
         <Image
           src={bgImage.imageUrl}
           alt={bgImage.description}
-          layout="fill"
-          objectFit="cover"
-          className="opacity-20"
+          fill
+          className="object-cover opacity-20"
           data-ai-hint={bgImage.imageHint}
         />
       )}
