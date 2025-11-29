@@ -1,3 +1,94 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-1",
+      "description": "A minimalist arrangement of skincare bottles on a clean background.",
+      "imageUrl": "https://images.unsplash.com/photo-1656103743424-acfe3183d435?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxza2luY2FyZSUyMGZsYXRsYXl8ZW58MHx8fHwxNzY0Mzc3MTc0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "skincare flatlay"
+    },
+    {
+      "id": "prod-cleanser-1",
+      "description": "Gentle Gel Cleanser bottle.",
+      "imageUrl": "https://images.unsplash.com/photo-1613803745940-581e4b908e79?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c2tpbmNhcmUlMjBib3R0bGV8ZW58MHx8fHwxNzY0Mzk1ODAwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "skincare bottle"
+    },
+    {
+      "id": "prod-toner-1",
+      "description": "Hydrating Rosewater Toner bottle.",
+      "imageUrl": "https://images.unsplash.com/photo-1616750819456-5cdee9b85d22?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxza2luY2FyZSUyMGJvdHRsZXxlbnwwfHx8fDE3NjQzOTU4MDB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "skincare bottle"
+    },
+    {
+      "id": "prod-serum-1",
+      "description": "Vitamin C Brightening Serum bottle.",
+      "imageUrl": "https://images.unsplash.com/photo-1715027155125-810cb995203f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzZXJ1bSUyMGJvdHRsZXxlbnwwfHx8fDE3NjQzNzcxNzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "serum bottle"
+    },
+    {
+      "id": "prod-moisturizer-1",
+      "description": "Lightweight Daily Moisturizer jar.",
+      "imageUrl": "https://images.unsplash.com/photo-1631438420064-8f1b2b52b2e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjcmVhbSUyMGphcnxlbnwwfHx8fDE3NjQzNDE2NTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cream jar"
+    },
+    {
+      "id": "prod-sunscreen-1",
+      "description": "Mineral SPF 50 Sunscreen tube.",
+      "imageUrl": "https://images.unsplash.com/photo-1602312771175-0a4f1f0f6214?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxza2luY2FyZSUyMHR1YmV8ZW58MHx8fHwxNzY0Mzk5MDk0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "skincare tube"
+    },
+    {
+      "id": "prod-mask-1",
+      "description": "Clay Detox Mask jar.",
+      "imageUrl": "https://images.unsplash.com/photo-1634449278077-820aacbf6aa4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjb3NtZXRpYyUyMGphcnxlbnwwfHx8fDE3NjQzOTkwOTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cosmetic jar"
+    },
+    {
+      "id": "prod-oil-1",
+      "description": "Balancing Face Oil bottle.",
+      "imageUrl": "https://images.unsplash.com/photo-1596470663178-dc2df28026f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxvaWwlMjBib3R0bGV8ZW58MHx8fHwxNzY0MzExNTkzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "oil bottle"
+    },
+    {
+      "id": "prod-exfoliant-1",
+      "description": "AHA/BHA Exfoliating Solution bottle.",
+      "imageUrl": "https://images.unsplash.com/photo-1616750819456-5cdee9b85d22?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxza2luY2FyZSUyMGJvdHRsZXxlbnwwfHx8fDE3NjQzOTU4MDB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "skincare bottle"
+    },
+    {
+      "id": "prod-eyecream-1",
+      "description": "Caffeine Eye Cream tube.",
+      "imageUrl": "https://images.unsplash.com/photo-1694101123493-5c4d839bf91f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjcmVhbSUyMHR1YmV8ZW58MHx8fHwxNzY0MzU3MDg2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cream tube"
+    },
+    {
+      "id": "prod-acne-1",
+      "description": "Salicylic Acid Spot Treatment tube.",
+      "imageUrl": "https://images.unsplash.com/photo-1725172045217-d1e1f2ecdf62?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxza2luY2FyZSUyMHR1YmV8ZW58MHx8fHwxNzY0Mzk5MDk0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "skincare tube"
+    },
+    {
+      "id": "prod-antiaging-1",
+      "description": "Retinol Night Serum bottle.",
+      "imageUrl": "https://images.unsplash.com/photo-1715027155125-810cb995203f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzZXJ1bSUyMGJvdHRsZXxlbnwwfHx8fDE3NjQzNzcxNzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "serum bottle"
+    },
+    {
+      "id": "prod-hydrating-serum-1",
+      "description": "Hyaluronic Acid Serum bottle.",
+      "imageUrl": "https://images.unsplash.com/photo-1638301868496-43577744a46c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c2VydW0lMjBib3R0bGV8ZW58MHx8fHwxNzY0Mzc3MTc0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "serum bottle"
+    },
+    {
+      "id": "quiz-bg",
+      "description": "Abstract background for the skin quiz.",
+      "imageUrl": "https://images.unsplash.com/photo-1498262257252-c282316270bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxhYnN0cmFjdCUyMHRleHR1cmV8ZW58MHx8fHwxNzY0MzMxOTg2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "abstract texture"
+    },
+    {
+      "id": "voucher-banner",
+      "description": "Banner image for the voucher program page.",
+      "imageUrl": "https://images.unsplash.com/photo-1654078054613-a56cfcabdb84?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxyZWN5Y2xpbmclMjBjb25jZXB0fGVufDB8fHx8MTc2NDM5OTA5NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "recycling concept"
+    }
+  ]
 }
