@@ -1,40 +1,58 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import type { Product } from '@/lib/types';
 import { ProductCard } from './ProductCard';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { Input } from './ui/input';
 import { Label } from './ui/label';
 
 interface ProductGridProps {
   allProducts: Product[];
+  filters: {
+    search: string;
+    categories: string[];
+    skinTypes: string[];
+    skinConcerns: string[];
+    brands: string[];
+  }
 }
 
-export function ProductGrid({ allProducts }: ProductGridProps) {
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>(allProducts);
+export function ProductGrid({ allProducts, filters }: ProductGridProps) {
   const [sortOrder, setSortOrder] = useState('featured');
 
-  // Placeholder for filter state
-  const [filters, setFilters] = useState({
-    search: '',
-    // Add other filters like category, skinType etc.
-  });
+  const filteredProducts = useMemo(() => {
+    let products = allProducts.filter(p => {
+        if (filters.search && !p.name.toLowerCase().includes(filters.search.toLowerCase())) {
+            return false;
+        }
+        if (filters.categories.length > 0 && !filters.categories.includes(p.category)) {
+            return false;
+        }
+        if (filters.skinTypes.length > 0 && !p.skinTypes.some(st => filters.skinTypes.includes(st))) {
+            return false;
+        }
+        if (filters.skinConcerns.length > 0 && !p.skinConcerns.some(sc => filters.skinConcerns.includes(sc))) {
+            return false;
+        }
+        if (filters.brands.length > 0 && !filters.brands.includes(p.brand)) {
+            return false;
+        }
+        return true;
+    });
 
-  // A more complex filtering logic would go here
-  // For now, we'll just show all products.
+    let sorted = [...products];
+    if (sortOrder === 'price-asc') {
+        sorted.sort((a, b) => a.price - b.price);
+    } else if (sortOrder === 'price-desc') {
+        sorted.sort((a, b) => b.price - a.price);
+    } else if (sortOrder === 'name-asc') {
+        sorted.sort((a, b) => a.name.localeCompare(b.name));
+    }
+    return sorted;
+  }, [allProducts, filters, sortOrder]);
   
   const handleSortChange = (value: string) => {
     setSortOrder(value);
-    let sorted = [...filteredProducts];
-    if (value === 'price-asc') {
-        sorted.sort((a, b) => a.price - b.price);
-    } else if (value === 'price-desc') {
-        sorted.sort((a, b) => b.price - a.price);
-    } else if (value === 'name-asc') {
-        sorted.sort((a, b) => a.name.localeCompare(b.name));
-    }
-    setFilteredProducts(sorted);
   }
 
   return (
